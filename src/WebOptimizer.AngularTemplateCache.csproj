@@ -8,7 +8,7 @@
       <Version>1.0.0-beta</Version>
       <Authors>kdcllc</Authors>
       <Company>King David Consulting LLC</Company>
-      <Description>Compiles Sass and Scss files for the LigerShark.WebOptimizer.Core system.</Description>
+      <Description>Compiles Html files for the AngularJs using LigerShark.WebOptimizer.Core system.</Description>
       <Copyright>Copyright © King David Consulting LLC</Copyright>
       <PackageId>KDCLLC.WebOptimizer.AngularTemplateCache</PackageId>
       <Product>KDCLLC.WebOptimizer.AngularTemplateCache</Product>
