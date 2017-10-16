@@ -1,0 +1,24 @@
+﻿@page
+@{
+    ViewData["Title"] = "Minification";
+}
+
+@section head {
+    <link rel="stylesheet" href="~/css/a.css" asp-append-version="true" />
+}
+
+<div>
+    <p>This page references the stylesheet <a href="~/css/a.css" type="text/css">/css/a.css</a> which result in:</p>
+
+    <ul>
+        <li>Response is minified</li>
+        <li>Image url is being fingerprinted</li>
+        <li>Cached on both server- and client-side</li>
+    </ul>
+</div>
+
+<p>
+    The script file <a href="~/js/plus.js">/js/plus.js</a> is also referenced and minified.
+</p>
+
+<script src="~/js/plus.js"></script>

@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="shortcut icon" href="~/img/a.png" />
+    @RenderSection("head", required: false)
+    <!-- @System.IO.Path.GetTempPath() -->
+</head>
+<body>
+    <header>
+        <h1>@ViewData["Title"]</h1>
+
+        <nav>
+            <ul>
+                <li><a asp-page="Index">AngularJs Templates</a></li>
+                <li><a asp-page="Minification">Minification</a></li>
+                <li><a asp-page="Bundle">Bundling</a></li>
+                <li><a asp-page="Inline">Inlining</a></li>
+                <li><a asp-page="Scss">Sass compilation</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        @RenderBody()
+    </main>
+
+    <footer>
+        <p>Read the <a href="https://github.com/ligershark/WebOptimizer" target="_blank">getting started guide</a></p>
+    </footer>
+</body>
+</html>

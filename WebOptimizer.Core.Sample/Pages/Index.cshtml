@@ -1,0 +1,28 @@
+﻿@page
+
+@{
+    ViewData["Title"] = "AngualrJs $templateCache";
+}
+
+@section head {
+    <link rel="stylesheet" href="~/css/a.css" asp-append-version="true" />
+}
+
+<div ng-app="app" ng-strict-di>
+    <h2>Template Cache Example</h2>
+    <nav>
+        <ul>
+            <li><a href="#/main">Main Page</a></li>
+            <li><a href="#/other">Form Page</a></li>
+        </ul>
+    </nav>
+    <div data-ng-view></div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+<script src="https://code.angularjs.org/1.5.6/angular-route.min.js"></script>
+<script src="~/app/app.js"></script>
+<script src="~/app/main.js"></script>
+<script src="~/app/other.js"></script>
+
+<script src="~/js/templates.js"></script>
