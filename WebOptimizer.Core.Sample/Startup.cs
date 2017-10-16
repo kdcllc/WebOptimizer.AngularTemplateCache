@@ -17,8 +17,14 @@ namespace WebOptimizerDemo
         {
             services.AddMvc();
 
+            services.AddMemoryCache();
+
             services.AddWebOptimizer(pipeline =>
             {
+                //pipeline.CompileLessFiles();
+                pipeline.AddLessBundle("/css/ab.css", "less/**/*.less");
+
+                pipeline.AddTypeScriptBundle("/js/ts-bundle.js", "ts/**/*.ts");
 
                 //if html files are not located inside of the wwwroot folder add UseContentRoot();
                 pipeline.AddHtmlTemplateBundle("/js/views.js", "app", "html/**/*.html")
