@@ -8,7 +8,7 @@
       <Content Include="html\main.html">
         <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       </Content>
-      <Content Include="html\other.html">
+      <Content Include="html\others\other.html">
         <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       </Content>
     </ItemGroup>

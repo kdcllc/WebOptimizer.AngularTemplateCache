@@ -15,10 +15,8 @@ namespace WebOptimizerDemo
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
-
             services.AddMemoryCache();
-
+            services.AddMvc();
             services.AddWebOptimizer(pipeline =>
             {
                 //pipeline.CompileLessFiles();
@@ -27,10 +25,17 @@ namespace WebOptimizerDemo
                 pipeline.AddTypeScriptBundle("/js/ts-bundle.js", "ts/**/*.ts");
 
                 //if html files are not located inside of the wwwroot folder add UseContentRoot();
-                pipeline.AddHtmlTemplateBundle("/js/views.js", "app", "html/**/*.html")
-                        .UseContentRoot();
+                pipeline.AddHtmlTemplateBundle("/js/views.js", new AngularTemplateOptions { moduleName = "app"}
+                                              , "html/**/*.html")
+                                            .UseContentRoot();
 
-                pipeline.AddHtmlTemplateBundle("/js/templates.js", "templates-main", "app/views/**/*.html");
+                pipeline.AddHtmlTemplateBundle("/js/templates.js", new AngularTemplateOptions { moduleName = "templates-main" } 
+                                            , "app/views/**/*.html");
+
+                pipeline.AddHtmlTemplateBundle("/js/templates-app.js",
+                                                new AngularTemplateOptions { moduleName = "templates", templatePath = "app/others/" },
+                                               "html/others/*.html")
+                                            .UseContentRoot();
 
                 // Creates a CSS and a JS bundle. Globbing patterns supported.
                 pipeline.AddCssBundle("/css/bundle.css", "css/*.css");

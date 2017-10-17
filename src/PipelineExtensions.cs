@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using NUglify.Html;
+using System.Collections.Generic;
 using WebOptimizer;
 using WebOptimizer.AngularTemplateCache;
 
@@ -19,6 +20,19 @@ namespace Microsoft.Extensions.DependencyInjection
         }
 
         /// <summary>
+        /// Build a transformation with path and module name
+        /// </summary>
+        /// <param name="asset"></param>
+        /// <param name="templateSettings"></param>
+        /// <param name="moduleName"></param>
+        /// <param name="templatePath"></param>
+        /// <returns></returns>
+        public static IAsset TransformHtml(this IAsset asset, AngularTemplateOptions templateSettings)
+        {
+            asset.Processors.Add(new Transformer(templateSettings));
+            return asset;
+        }
+        /// <summary>
         ///  files on the asset pipeline.
         /// </summary>
         public static IEnumerable<IAsset> TransformHtml(this IEnumerable<IAsset> assets, string moduleName)
@@ -34,24 +48,22 @@ namespace Microsoft.Extensions.DependencyInjection
         }
 
         /// <summary>
-        ///  files on the asset pipeline.
+        ///  Creates AngularJs bundle from html templates.
         /// </summary>
         /// <param name="pipeline">The asset pipeline.</param>
-        /// <param name="route">The route where the compiled .css file will be available from.</param>
-        /// <param name="moduleName"></param>
-        /// <param name="sourceFiles">The path to the .sass or .scss source files to compile.</param>
-        public static IAsset AddHtmlTemplateBundle(this IAssetPipeline pipeline, string route, string moduleName,
+        /// <param name="route">The route where the compiled .html file will be available from.</param>
+        /// <param name="sourceFiles">The path to the .html source files to compile.</param>
+        public static IAsset AddHtmlTemplateBundle(this IAssetPipeline pipeline, string route, 
+                                                   AngularTemplateOptions moduleSettings,
                                                    params string[] sourceFiles)
         {
+            Guard.ArgumentIsNotNull(moduleSettings, "Can't be null");
 
             return pipeline.AddBundle(route, "text/javascript; charset=UTF-8", sourceFiles)
                             .AdjustRelativePaths()
-                            //.Concatenate()   //concatenates all of the html files into one route.
-                            .TransformHtml(moduleName)
-
-                           ;
+                            .TransformHtml(moduleSettings);
         }
-
+        
         /// <summary>
         /// Default folder is app
         /// </summary>

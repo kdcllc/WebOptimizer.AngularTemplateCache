@@ -20,11 +20,6 @@ namespace WebOptimizer.AngularTemplateCache
         private string _path;
 
         /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="moduleName"></param>
-        public Transformer(string moduleName) : this(moduleName, string.Empty ,new HtmlSettings()) { }
-        /// <summary>
         /// AngularJs main module name for the files
         /// </summary>
         /// <param name="moduleName"></param>
@@ -36,12 +31,38 @@ namespace WebOptimizer.AngularTemplateCache
             _path = path;
             Settings = settings;
         }
+
+        /// <summary>
+        /// AngularJs main module name for the files
+        /// </summary>
+        /// <param name="moduleName"></param>
+        public Transformer(string moduleName) 
+            : this(moduleName, string.Empty ,new HtmlSettings()) { }
+  
+        /// <summary>
+        /// Builds a transformer for the html template
+        /// </summary>
+        /// <param name="moduleName"></param>
+        /// <param name="path"></param>
+        public Transformer(string moduleName, string path) 
+            : this(moduleName, path, new HtmlSettings()) { }
+
+        /// <summary>
+        /// AngularJs main module name for the files
+        /// </summary>
+        /// <param name="angularTemplateOptions"></param>
+        public Transformer(AngularTemplateOptions angularTemplateOptions) 
+            : this(angularTemplateOptions.moduleName,angularTemplateOptions.templatePath) { }
+       
         /// <summary>
         /// Gets the custom key that should be used when calculating the memory cache key.
         /// </summary>
         public string CacheKey(HttpContext context) => string.Empty;
 
-        public HtmlSettings Settings { get; set; }
+        /// <summary>
+        /// HtmlSettings property
+        /// </summary>
+        public HtmlSettings Settings { get; set; } = new HtmlSettings();
 
         /// <summary>
         /// Executes the processor on the specified configuration.
@@ -67,10 +88,11 @@ namespace WebOptimizer.AngularTemplateCache
 
                 if (result.HasErrors)
                 {
-                    minified = $"<!-- {string.Join("\r\n", result.Errors)} -->\r\n" + input;
+                    minified = $"// {string.Join("\r\n", result.Errors)} ${input}";
                 }
-                builder.AppendFormat(@"$templateCache.put('{0}{1}','{2}');", _path, file.Name, minified);
-              
+                
+                builder.AppendFormat(@"$templateCache.put('{0}{1}','{2}');",_path, file.Name, minified);
+                
                 //content[route] = cx.AsByteArray();
             }
             builder.Append(@"}]);");
