@@ -5,9 +5,6 @@
       <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\WebOptimizer.Sass.xml</DocumentationFile>
       <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
       <PackageTags>angularjs,html,templates, bundle, minify, optimize, asp.net core</PackageTags>
-      <Version>1.0.1-beta</Version>
-      <Authors>kdcllc</Authors>
-      <Company>King David Consulting LLC</Company>
       <Description>Compiles Html files for the AngularJs using LigerShark.WebOptimizer.Core system.</Description>
       <Copyright>Copyright © King David Consulting LLC</Copyright>
       <PackageId>KDCLLC.WebOptimizer.AngularTemplateCache</PackageId>

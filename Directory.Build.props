@@ -1,6 +1,7 @@
 <Project>
   <PropertyGroup>
-    <Authors>King David Consulting LLC</Authors>
+    <Company>King David Consulting LLC</Company>
+    <Authors>kdcllc</Authors>
     <LangVersion>latest</LangVersion>
     <VersionPrefix>1.0.0</VersionPrefix>
   </PropertyGroup>
