@@ -24,8 +24,6 @@ namespace Microsoft.Extensions.DependencyInjection
         /// </summary>
         /// <param name="asset"></param>
         /// <param name="templateSettings"></param>
-        /// <param name="moduleName"></param>
-        /// <param name="templatePath"></param>
         /// <returns></returns>
         public static IAsset TransformHtml(this IAsset asset, AngularTemplateOptions templateSettings)
         {

@@ -1,4 +1,4 @@
-var bar = (function () {
+var bar = /** @class */ (function () {
     function bar() {
         this.text = "2";
     }
