@@ -1,4 +1,6 @@
 # Introduction 
+[![Build status](https://ci.appveyor.com/api/projects/status/ls698amk4w687olj?svg=true)](https://ci.appveyor.com/project/kdcllc/weboptimizer-angulartemplatecache)
+
 This ASP.NET Core Web Optimizer for AnuglarJs is based on [ASP.NET Core Web Optimizer]
 (https://github.com/ligershark/WebOptimizer) engine designed by [Mads Kristensen](https://github.com/madskristensen).
 

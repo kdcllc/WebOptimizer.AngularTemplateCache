@@ -11,7 +11,16 @@ install:
   - ps: (New-Object System.Net.WebClient).DownloadFile($urlCurrent, $tempFileCurrent)
   - ps: Add-Type -AssemblyName System.IO.Compression.FileSystem; [System.IO.Compression.ZipFile]::ExtractToDirectory($tempFileCurrent, $env:DOTNET_INSTALL_DIR)
   - ps: $env:Path = "$env:DOTNET_INSTALL_DIR;$env:Path" 
-nuget:
+dotnet_csproj:
+  patch: true
+  file: '**\*.csproj'
+  version: '{version}'
+  package_version: '{version}'
+  assembly_version: '{version}'
+  file_version: '{version}'
+  informational_version: '{version}'
+
+  nuget:
   disable_publish_on_pr: true
 build_script:
 - ps: .\Build.ps1
