@@ -28,7 +28,7 @@ if(Test-Path .\src\artifacts) { Remove-Item .\src\artifacts -Force -Recurse }
 $revision = @{ $true = $env:APPVEYOR_BUILD_NUMBER; $false = 1 }[$env:APPVEYOR_BUILD_NUMBER -ne $NULL];
 $revision = "{0:D2}" -f [convert]::ToInt32($revision, 10)
 
-exec { & dotnet build WebOptimizer.AngularTemplateCache.sln -c Release -/property:Version=1.0.$revision }
+exec { & dotnet build WebOptimizer.AngularTemplateCache.sln -c Release /:property:Version=1.0.$revision }
 
 Push-Location -Path .\test\
 
