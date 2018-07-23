@@ -96,7 +96,7 @@ namespace WebOptimizer.AngularTemplateCache
                 //content[route] = cx.AsByteArray();
             }
             builder.Append(@"}]);");
-            var cx = builder.ToString();
+            string cx = builder.ToString();
             content.Add(Guid.NewGuid().ToString(), cx.AsByteArray());
             context.Content = content;
 

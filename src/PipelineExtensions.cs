@@ -1,18 +1,19 @@
-﻿using NUglify.Html;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using WebOptimizer;
 using WebOptimizer.AngularTemplateCache;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
     /// <summary>
-    /// Extensions methods for registrating the AngularJs $templateCache transfomer on the Asset Pipeline.
+    /// Extensions methods for registering the AngularJs $templateCache transformer on the Asset Pipeline.
     /// </summary>
     public static class PipelineExtensions
     {
         /// <summary>
-        /// Transforms Html AngularJs partial files to Javascript file that can be cached.
+        /// Transforms HTML AngularJs partial files to Javascript file that can be cached.
         /// </summary>
+        /// <param name="asset"></param>
+        ///<param name="moduleName"></param>
         public static IAsset TransformHtml(this IAsset asset, string moduleName)
         {
             asset.Processors.Add(new Transformer(moduleName));
@@ -30,9 +31,12 @@ namespace Microsoft.Extensions.DependencyInjection
             asset.Processors.Add(new Transformer(templateSettings));
             return asset;
         }
+
         /// <summary>
         ///  files on the asset pipeline.
         /// </summary>
+        /// <param name="assets"></param>
+        /// <param name="moduleName"></param>
         public static IEnumerable<IAsset> TransformHtml(this IEnumerable<IAsset> assets, string moduleName)
         {
             var list = new List<IAsset>();
@@ -46,10 +50,11 @@ namespace Microsoft.Extensions.DependencyInjection
         }
 
         /// <summary>
-        ///  Creates AngularJs bundle from html templates.
+        ///  Creates AngularJs bundle from HTML templates.
         /// </summary>
         /// <param name="pipeline">The asset pipeline.</param>
         /// <param name="route">The route where the compiled .html file will be available from.</param>
+        /// <param name="moduleSettings"></param>
         /// <param name="sourceFiles">The path to the .html source files to compile.</param>
         public static IAsset AddHtmlTemplateBundle(this IAssetPipeline pipeline, string route, 
                                                    AngularTemplateOptions moduleSettings,
@@ -84,7 +89,6 @@ namespace Microsoft.Extensions.DependencyInjection
                                                             params string[] sourceFiles)
         {
             return pipeline.AddFiles("text/javascript; charset=UFT-8", sourceFiles)
-                           //.Concatenate()
                            .TransformHtml(moduleName);
         }
     }
