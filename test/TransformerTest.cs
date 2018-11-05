@@ -15,7 +15,7 @@ namespace xUnitTest
     public class CompilerTest
     {
         [Fact]
-        public async Task Compile_Success()
+        public async Task Compile_SuccessAsync()
         {
             var processor = new Transformer("templates-main");
             var pipeline = new Mock<IAssetPipeline>().SetupAllProperties();
